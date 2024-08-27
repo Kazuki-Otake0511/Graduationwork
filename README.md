@@ -1,8 +1,6 @@
 
 https://www.figma.com/design/oIeKPEJLjMDBi0I2IUeOrI/Untitled?node-id=0-1&t=tFURZOsLzTVYh2ew-1
 
-https://i.gyazo.com/46be8d568df06b1d7dba0de8904c0f47.png
-
 ■サービス概要
 このサービスは、ユーザーが自分が購入して良かったと思う商品をランキング形式で紹介・投稿できるプラットフォームです。ランキングは10位から作成可能で、1位のみのランキングでも投稿が可能です。
 ユーザーは自分が購入して良かった商品の感想や使用方法の説明を文章やレビュー動画、写真とともに投稿し、商品購入ページへのリンクも併せて掲載することができます。
