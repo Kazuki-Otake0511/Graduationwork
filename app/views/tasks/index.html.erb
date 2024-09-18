@@ -2,15 +2,17 @@
 
 <% content_for :title, "Tasks" %>
 
-<h1>トップページ</h1>
+<header>
+  <h1>トップページ</h1>
 
-<div id="tasks">
-  <% @tasks.each do |task| %>
-    <%= render task %>
-    <p>
-      <%= link_to "Show this task", task %>
-    </p>
-  <% end %>
-</div>
+  <div id="tasks">
+    <% @tasks.each do |task| %>
+      <%= render task %>
+      <p>
+        <%= link_to "Show this task", task %>
+      </p>
+    <% end %>
+  </div>
+</header>
 
 <%= link_to "New task", new_task_path %>
