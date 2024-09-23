@@ -12,6 +12,7 @@ gem "cssbundling-rails"
 gem "jbuilder"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
+gem "sorcery"
 
 # Add Bootstrap
 gem "bootstrap", "~> 5.1.0"  # ←ここに追加

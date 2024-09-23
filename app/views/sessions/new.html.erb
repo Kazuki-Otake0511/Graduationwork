@@ -1,0 +1,22 @@
+<h1>ログイン</h1> <!-- ログインページのタイトルを表示 -->
+
+<%= form_with(url: login_path, local: true, class: "form") do |form| %>
+  <!-- form_withを使ってログインフォームを作成。URLはlogin_path、送信方法はPOST -->
+  <div class="form-group">
+    <%= form.label :email %> <!-- emailフィールドのラベルを表示 -->
+    <%= form.text_field :email, class: "form-control" %> <!-- emailフィールドを表示 -->
+  </div>
+
+  <div class="form-group">
+    <%= form.label :password %> <!-- passwordフィールドのラベルを表示 -->
+    <%= form.password_field :password, class: "form-control" %> <!-- passwordフィールドを表示 -->
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "ログイン", class: "btn btn-primary" %> <!-- "ログイン"ボタンを表示し、クリックするとフォームが送信される -->
+  </div>
+<% end %>
+<p>
+  アカウントをお持ちでないですか？ 
+  <%= link_to 'アカウント登録はこちら', new_user_path, class: "btn btn-link" %>
+</p>

@@ -35,30 +35,58 @@
     <% if controller.controller_name == 'home' && controller.action_name == 'index' %>
       <%= stylesheet_link_tag 'home', media: 'all' %>
     <% end %>
+
+    <% if controller.controller_name == 'sessions' && controller.action_name == 'new' %>
+      <%= stylesheet_link_tag 'home', media: 'all' %>
+    <% end %>
   </head>
 
   <body>
     <!-- ヘッダーの開始 -->
     <header>
-      <!-- Bootstrapのナビゲーションバーを使用。レスポンシブ対応 -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Bootstrapのナビゲーションバーを使用。レスポンシブ対応 -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <!-- メニューが小さい画面でも折りたたまれるためのトグルボタン -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- メニューが小さい画面でも折りたたまれるためのトグルボタン -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- ナビゲーションのリンク一覧 -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto"> <!-- ms-auto クラスを追加して右寄せ -->
-            <li class="nav-item">
-              <a class="nav-link" href="#">ログイン</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    <!-- ナビゲーションのリンク一覧 -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto"> <!-- ms-auto クラスを追加して右寄せ -->
+        <% if logged_in? %>
+          <!-- ログインしている場合は「ログイン中」を表示 -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">ログイン中</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <!-- ログインしていない場合は「ログイン」を表示 -->
+          <li class="nav-item">
+            <a class="nav-link" href="<%= login_path %>">ログイン</a>
+          </li>
+        <% end %>
+      </ul> <!-- <ul>タグの閉じ忘れ修正 -->
+    </div>
+  </nav>
+</header>
     <!-- ヘッダーの終了 -->
+
+    <!-- フラッシュメッセージの表示 -->
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  
+    <% if flash[:danger] %>
+      <div class="alert alert-danger">
+        <%= flash[:danger] %>
+      </div>
+    <% end %>
 
     <!-- 各ページのコンテンツが挿入される場所。各ビューがここに入る -->
     <%= yield %>
