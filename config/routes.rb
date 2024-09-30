@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  get "users/new"
-  get "users/create"
+  get "profiles/edit"
+  get "profiles/update"
   get "home/index"
   resources :tasks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "home#index"
 
   # ユーザーの新規登録用ルートを追加
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
+  resource :profile, only: [:edit, :update]
+
 
   # ログイン・ログアウトのルート
   get 'login', to: 'sessions#new', as: :login

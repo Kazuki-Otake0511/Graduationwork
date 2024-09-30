@@ -58,10 +58,19 @@
         <% if logged_in? %>
           <!-- ログインしている場合は「ログイン中」を表示 -->
           <li class="nav-item">
-            <a class="nav-link" href="#">ログイン中</a>
+    <a class="nav-link" href="#"><%= current_user.name %> さん</a>
           </li>
           <li class="nav-item">
             <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %>
+          </li>
+          <!-- アカウント編集ページへのリンク -->
+          <li class="nav-item">
+            <%= link_to "アカウント編集", edit_user_path(current_user), class: "nav-link" %>
+          </li>
+        
+          <!-- プロフィール編集ページへのリンク -->
+          <li class="nav-item">
+            <%= link_to "プロフィール編集", edit_profile_path, class: "nav-link" %>
           </li>
         <% else %>
           <!-- ログインしていない場合は「ログイン」を表示 -->

@@ -1,5 +1,9 @@
 class User < ApplicationRecord
-  authenticates_with_sorcery!
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
+
+  after_create :create_default_profile
+
   authenticates_with_sorcery!  # Sorceryの認証機能を有効にする 
 
    # メールアドレスが必須かつユニークであることを確認
@@ -17,4 +21,9 @@ class User < ApplicationRecord
   # パスワード確認用フィールドのバリデーション（オプション）
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, if: :password
+
+  def create_default_profile
+    #デフォルトのプロフィールを作成
+    self.create_profile(hobby: "未設定", hometown: "未設定", profile_image: "default.png")
+  end
 end

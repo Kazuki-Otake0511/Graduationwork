@@ -1,0 +1,42 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+    errors:
+      messages:
+        blank: "を入力してください"         # フィールドが空のときのエラーメッセージ
+        taken: "はすでに存在します"       # ユニーク制約違反時のエラーメッセージ
+        confirmation: "と確認が一致しません" # パスワード確認時のエラーメッセージ
+        too_short: "は%{count}文字以上で入力してください"  # 入力が短すぎる場合のエラーメッセージ
+  errors:
+    format: "%{attribute}%{message}"  # エラーメッセージのフォーマット
+    messages:
+      record_invalid: "バリデーションに失敗しました"  # バリデーション失敗時
+      restrict_dependent_destroy:
+        one: "他のレコードが依存しているため削除できません"  # 削除制約違反時（1つの依存レコード）
+        many: "他のレコードが依存しているため削除できません" # 削除制約違反時（複数の依存レコード）
+  helpers:
+    submit:
+      create: "作成する"   # フォームの送信ボタン
+      update: "更新する"   # フォームの更新ボタン
+      submit: "送信"       # 汎用の送信ボタン
+  flash:
+    notice: "通知"         # フラッシュメッセージ（成功）
+    alert: "エラー"        # フラッシュメッセージ（失敗）
+    profiles:
+      update: "プロフィールが更新されました"
+    sessions:
+      login_success: "ログインに成功しました"
+      login_failure: "メールアドレスまたはパスワードが違います"
+      logout_success: "ログアウトしました"
+    users:
+      create_success: "アカウントが作成されました"
+      create_failure: "アカウントの作成に失敗しました"
+      update_success: "ユーザー情報が更新されました"
+      update_failure: "ユーザー情報の更新に失敗しました"
