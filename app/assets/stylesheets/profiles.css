@@ -1,0 +1,42 @@
+
+/* プロフィール編集ページ用のスタイル */
+body {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    background: url('/assets/mainimg.jpg') no-repeat center center / cover;
+  }
+
+/* プロフィール画像を左に寄せつつ、フォームとの隙間をあける */
+.profile-image {
+    margin-bottom: 20px; /* フォームと画像の間にスペースを追加 */
+  }
+  
+  /* フォーム全体を縦に配置 */
+  .profile-form {
+    clear: both; /* フロート解除、画像の横に来るのを防ぐ */
+  }
+  
+  /* 画像の見た目を整える */
+  .profile-image-preview {
+    width: 150px; /* 画像の幅 */
+    height: 150px; /* 画像の高さ */
+    object-fit: cover; /* アスペクト比を維持して正方形に収める */
+    border-radius: 50%; /* 画像を円形にする（任意） */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+  }
