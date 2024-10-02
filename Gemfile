@@ -13,7 +13,7 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 gem "sorcery"
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 3.0'
 gem 'mini_magick'
 
 # Add Bootstrap
