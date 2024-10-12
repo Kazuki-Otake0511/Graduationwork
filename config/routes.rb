@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # ユーザーの新規登録用ルートを追加
   resources :users, only: [:new, :create, :edit, :update]
   resource :profile, only: [:edit, :update]
+  resources :posts
 
 
   # ログイン・ログアウトのルート

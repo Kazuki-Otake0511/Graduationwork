@@ -1,0 +1,12 @@
+<h1><%= @post.product_name %></h1>
+<p>ランキング: <%= @post.product_rank %></p>
+<p>推薦のポイント: <%= @post.recommendation_points %></p>
+<p>購入リンク: <%= link_to @post.purchase_link, @post.purchase_link %></p>
+
+<h3>商品画像</h3>
+<% @post.post_images.each do |image| %>
+  <%= image_tag image.image_url.url, class: "img-thumbnail", size: "300x300" %>
+<% end %>
+
+<%= link_to '編集', edit_post_path(@post), class: 'btn btn-primary' %>
+<%= link_to '投稿一覧に戻る', posts_path, class: 'btn btn-secondary' %>
