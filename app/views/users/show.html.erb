@@ -1,0 +1,17 @@
+<h1><%= @user.name %>さんのランキング</h1>
+
+<% if @posts.any? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <strong>商品名:</strong> <%= post.product_name %><br>
+        <strong>ランキング:</strong> <%= post.product_rank %><br>
+        <strong>推薦ポイント:</strong> <%= post.recommendation_points %><br>
+        <strong>購入リンク:</strong> <%= link_to '購入はこちら', post.purchase_link, target: '_blank' %>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+<% else %>
+  <p>まだ投稿がありません。</p>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "rankings/index"
   get "profiles/edit"
   get "profiles/update"
   get "home/index"
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   # ユーザーの新規登録用ルートを追加
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users
   resource :profile, only: [:edit, :update]
   resources :posts
 
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  # ユーザーごとのランキングページのルート
+  get 'rankings', to: 'rankings#index'
   # Defines the root path route ("/")
   # root "posts#index"
 end

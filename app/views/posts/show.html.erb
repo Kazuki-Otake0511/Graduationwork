@@ -5,7 +5,11 @@
 
 <h3>商品画像</h3>
 <% @post.post_images.each do |image| %>
-  <%= image_tag image.image_url.url, class: "img-thumbnail", size: "300x300" %>
+  <% if image.image_url.present? %>
+    <%= image_tag image.image_url.url, class: "img-thumbnail", size: "300x300" %>
+  <% else %>
+    <p>画像がありません</p>
+  <% end %>
 <% end %>
 
 <%= link_to '編集', edit_post_path(@post), class: 'btn btn-primary' %>

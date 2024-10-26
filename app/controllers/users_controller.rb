@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   # ユーザーの編集や更新を行う際に、現在のユーザー情報を取得してセットする
-  before_action :set_user, only: [:edit, :update]  
+  before_action :set_user, only: [:edit, :update, :show]  # showアクションを追加
+
+  def index
+    @users = User.page(params[:page]).per(10) # 1ページに10件のユーザーを表示
+  end
+
+  # ユーザー詳細ページの表示（新規追加）
+  def show
+    @posts = @user.posts.order(product_rank: :asc)  # ランキング順に投稿を取得
+  end
 
   # ユーザー新規登録ページの表示
   def new
@@ -40,9 +49,12 @@ class UsersController < ApplicationController
   
   private
 
-  # ログイン中のユーザーを設定するメソッド
+  # ユーザー情報を設定するメソッド
   def set_user
-    @user = current_user  # Sorceryでログインしているユーザーを取得
+    @user = User.find(params[:id])  # 特定のユーザーをIDで取得
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "ユーザーが見つかりません"  # エラーメッセージを表示
+    redirect_to users_path  # ユーザー一覧にリダイレクト
   end
 
   # ユーザー登録や更新時に許可するパラメータを指定するメソッド

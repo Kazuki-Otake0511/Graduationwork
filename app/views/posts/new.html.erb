@@ -1,35 +1,30 @@
 <%= form_with(model: @post, local: true, html: { multipart: true }) do |f| %>
-    <div class="form-group">
-      <%= f.label :product_name, "商品名" %>
-      <%= f.text_field :product_name, class: 'form-control' %>
-    </div>
-  
-    <div class="form-group">
-      <%= f.label :product_rank, "ランキング" %>
-      <%= f.number_field :product_rank, class: 'form-control' %>
-    </div>
-  
-    <div class="form-group">
-      <%= f.label :recommendation_points, "推薦のポイント" %>
-      <%= f.text_area :recommendation_points, class: 'form-control' %>
-    </div>
-  
-    <div class="form-group">
-      <%= f.label :purchase_link, "購入リンク" %>
-      <%= f.text_field :purchase_link, class: 'form-control' %>
-    </div>
-    
-    <!-- 画像アップロードフィールド -->
-    <div class="form-group">
-      <h3>商品画像</h3>
-      <%= f.fields_for :post_images do |pi| %>
-        <div class="nested-fields">
-          <%= pi.label :image_url, "商品画像" %>
-          <%= pi.file_field :image_url, class: 'form-control' %>
-        </div>
-      <% end %>
-    </div>
+  <div class="form-group">
+    <%= f.label :product_name, "商品名" %>
+    <%= f.text_field :product_name, class: 'form-control' %>
+  </div>
 
-    <%= f.submit '投稿する', class: 'btn btn-primary' %>
-<% end %>
+  <div class="form-group">
+    <%= f.label :product_rank, "ランキング" %>
+    <%= f.number_field :product_rank, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :recommendation_points, "推薦のポイント" %>
+    <%= f.text_area :recommendation_points, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :purchase_link, "購入リンク" %>
+    <%= f.text_field :purchase_link, class: 'form-control' %>
+  </div>
+
   
+  <!-- 商品画像のアップロード -->
+  <div class="form-group">
+    <%= label_tag 'post[post_images_files][]', "商品画像" %>
+    <%= file_field_tag 'post[post_images_files][]', multiple: true, class: 'form-control' %>
+  </div>
+
+  <%= f.submit '投稿する', class: 'btn btn-primary' %>
+<% end %>

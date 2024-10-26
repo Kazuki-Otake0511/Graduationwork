@@ -1,0 +1,22 @@
+<h1>ユーザー一覧</h1>
+
+<ul class="list-group">
+  <% @users.each do |user| %>
+    <li class="list-group-item">
+      <!-- ユーザー名をリンクに変更 -->
+      <strong>名前:</strong> <%= link_to user.name, user_path(user) %><br>
+      
+      <strong>Email:</strong> <%= user.email %><br>
+      <strong>趣味:</strong> <%= user.profile.hobby if user.profile.present? %><br>
+      <strong>出身地:</strong> <%= user.profile.hometown if user.profile.present? %><br>
+      
+      <!-- プロフィール画像の表示 -->
+      <% if user.profile&.profile_image.present? %>
+        <strong>プロフィール:</strong> 
+        <%= image_tag(user.profile.profile_image.url, alt: "#{user.name}のプロフィール画像", class: "img-thumbnail", size: "100x100") %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<!-- ページネーション -->
