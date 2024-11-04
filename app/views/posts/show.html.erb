@@ -1,16 +1,34 @@
-<h1><%= @post.product_name %></h1>
-<p>ランキング: <%= @post.product_rank %></p>
-<p>推薦のポイント: <%= @post.recommendation_points %></p>
-<p>購入リンク: <%= link_to @post.purchase_link, @post.purchase_link %></p>
-
-<h3>商品画像</h3>
-<% @post.post_images.each do |image| %>
-  <% if image.image_url.present? %>
-    <%= image_tag image.image_url.url, class: "img-thumbnail", size: "300x300" %>
-  <% else %>
-    <p>画像がありません</p>
-  <% end %>
+<% if flash.any? %>
+  <div class="container mt-3">
+    <% flash.each do |key, message| %>
+      <div class="alert alert-<%= key == 'success' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
+        <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
-<%= link_to '編集', edit_post_path(@post), class: 'btn btn-primary' %>
-<%= link_to '投稿一覧に戻る', posts_path, class: 'btn btn-secondary' %>
+<h1><%= t('posts.show.title', product_name: @post.product_name) %></h1>
+<p><%= t('posts.show.rank', rank: @post.product_rank) %></p>
+<p><%= t('posts.show.recommendation_points', points: @post.recommendation_points) %></p>
+<p><%= t('posts.show.purchase_link') %>: <%= link_to @post.purchase_link, @post.purchase_link, target: "_blank", rel: "noopener", class: "link-primary" %></p>
+
+<h3><%= t('posts.show.product_image') %></h3>
+<% if @post.post_images.any? %>
+  <% @post.post_images.each do |image| %>
+    <% if image.image_url.present? %>
+      <%= image_tag image.image_url.url, class: "img-thumbnail", size: "300x300" %>
+    <% else %>
+      <p><%= t('posts.show.no_image') %></p>
+    <% end %>
+  <% end %>
+<% else %>
+  <p><%= t('posts.show.no_image') %></p>
+<% end %>
+
+<div class="mt-4">
+  <%= link_to t('posts.show.edit'), edit_post_path(@post), class: 'btn btn-primary me-2' %>
+  <%= link_to t('posts.show.back_to_list'), posts_path, class: 'btn btn-secondary me-2' %>
+  <%= link_to t('posts.show.delete'), post_path(@post), method: :delete, data: { confirm: t('posts.show.delete_confirm') }, class: 'btn btn-danger' %>
+</div>

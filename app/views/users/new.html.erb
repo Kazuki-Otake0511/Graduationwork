@@ -1,9 +1,9 @@
-<h1>アカウント登録</h1>
+<h1><%= t('users.registration_title') %></h1>
 
 <!-- フラッシュメッセージの表示 -->
 <% if flash[:alert] %>
   <div class="alert alert-danger">
-    <%= flash[:alert] %>
+    <%= t('users.form.alert') %>
   </div>
 <% end %>
 

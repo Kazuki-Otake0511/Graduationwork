@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- ページのタイトル。各ページで指定されていない場合は "Myapp" というデフォルトが使われる -->
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || t('application.title', default: 'Myapp') %></title>
 
     <!-- ビューポートの設定。レスポンシブデザインのために使用 -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -44,44 +44,50 @@
   <body>
     <!-- ヘッダーの開始 -->
     <header>
-  <!-- Bootstrapのナビゲーションバーを使用。レスポンシブ対応 -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Bootstrapのナビゲーションバーを使用。レスポンシブ対応 -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <!-- メニューが小さい画面でも折りたたまれるためのトグルボタン -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <!-- メニューが小さい画面でも折りたたまれるためのトグルボタン -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="<%= t('application.nav.toggle_navigation') %>">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- ナビゲーションのリンク一覧 -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto"> <!-- ms-auto クラスを追加して右寄せ -->
-        <% if logged_in? %>
-          <!-- ログインしている場合は「ログイン中」を表示 -->
-          <li class="nav-item">
-    <a class="nav-link" href="#"><%= current_user.name %> さん</a>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %>
-          </li>
-          <!-- アカウント編集ページへのリンク -->
-          <li class="nav-item">
-            <%= link_to "アカウント編集", edit_user_path(current_user), class: "nav-link" %>
-          </li>
-        
-          <!-- プロフィール編集ページへのリンク -->
-          <li class="nav-item">
-            <%= link_to "プロフィール編集", edit_profile_path, class: "nav-link" %>
-          </li>
-        <% else %>
-          <!-- ログインしていない場合は「ログイン」を表示 -->
-          <li class="nav-item">
-            <a class="nav-link" href="<%= login_path %>">ログイン</a>
-          </li>
-        <% end %>
-      </ul> <!-- <ul>タグの閉じ忘れ修正 -->
-    </div>
-  </nav>
-</header>
+        <!-- ナビゲーションのリンク一覧 -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto"> <!-- ms-auto クラスを追加して右寄せ -->
+
+            <!-- ホームに戻るボタン (ログインしていてもしていなくても表示) -->
+            <li class="nav-item">
+              <%= link_to t('application.nav.home'), root_path, class: "nav-link" %>
+            </li>
+
+            <% if logged_in? %>
+              <!-- ログインしている場合は「ログイン中」を表示 -->
+              <li class="nav-item">
+                <%= link_to "#{current_user.name} #{t('application.nav.logged_in')}", user_path(current_user), class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to t('application.nav.logout'), logout_path, method: :delete, class: "nav-link" %>
+              </li>
+              <!-- アカウント編集ページへのリンク -->
+              <li class="nav-item">
+                <%= link_to t('application.nav.account_edit'), edit_user_path(current_user), class: "nav-link" %>
+              </li>
+
+              <!-- プロフィール編集ページへのリンク -->
+              <li class="nav-item">
+                <%= link_to t('application.nav.profile_edit'), edit_profile_path, class: "nav-link" %>
+              </li>
+            <% else %>
+              <!-- ログインしていない場合は「ログイン」を表示 -->
+              <li class="nav-item">
+                <%= link_to t('application.nav.login'), login_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <!-- ヘッダーの終了 -->
 
     <!-- フラッシュメッセージの表示 -->

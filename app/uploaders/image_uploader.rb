@@ -1,20 +1,30 @@
 class ImageUploader < CarrierWave::Uploader::Base
-   # 保存先の指定。デフォルトではファイルシステムに保存される
-   storage :file
+  
+  include CarrierWave::MiniMagick
+  # ストレージの設定: ローカルファイルに保存する場合
+  storage :file
+  # リモートに保存する場合は、上記をコメントアウトし、下記を使用
+  # storage :fog
 
-   # アップロードされたファイルを保存するディレクトリを指定
-   def store_dir
-     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-   end
- 
-   # 許可するファイルの拡張子を制限
-   def extension_whitelist
-     %w(jpg jpeg gif png)
-   end
+  # アップロードされたファイルが保存されるディレクトリを指定
+  # "uploads/[モデル名]/[カラム名]/[モデルID]" の形式で保存
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
 
-   # 画像のサイズ制限（例: 1MBまで）
-   def size_range
-     1..1.megabytes
-   end
-   
+  # アップロード可能なファイル拡張子の許可リスト
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
+
+   # 画像をアップロード時にリサイズする
+   process resize_to_fit: [200, 200]  # 200x200にリサイズ（必要なサイズに変更）
+
+  # アップロードされたファイルのサムネイルバージョンを作成
+  version :thumb do
+    process resize_to_fit: [50, 50]  # サムネイルを50x50にリサイズ
+  end
+  # def filename
+  #   "custom_name.jpg" if original_filename
+  # end
 end

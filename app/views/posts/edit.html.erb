@@ -1,31 +1,7 @@
-<%= form_with(model: @post, local: true) do |f| %>
-    <div>
-      <%= f.label :product_name, "商品名" %>
-      <%= f.text_field :product_name %>
-    </div>
-  
-    <div>
-      <%= f.label :product_rank, "商品ランク" %>
-      <%= f.text_field :product_rank %>
-    </div>
-  
-    <div>
-      <%= f.label :recommendation_points, "おすすめポイント" %>
-      <%= f.text_area :recommendation_points %>
-    </div>
-  
-    <div>
-      <%= f.label :purchase_link, "購入リンク" %>
-      <%= f.text_field :purchase_link %>
-    </div>
-  
-    <!-- 画像のフィールドはここでは後回しに -->
-    <!-- <%= f.fields_for :post_images do |image_f| %>
-      <%= image_f.file_field :image_url %>
-    <% end %> -->
-  
-    <div>
-      <%= f.submit "更新する" %>
-    </div>
-  <% end %>
-  
+<h1><%= t('posts.edit_title') %></h1>
+<%= render 'form', is_edit: true %>
+
+<!-- 削除ボタン -->
+<div class="mt-3">
+  <%= link_to t('posts.form.delete'), post_path(@post), method: :delete, data: { confirm: t('application.posts.form.confirm_delete') }, class: 'btn btn-danger' %>
+</div>

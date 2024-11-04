@@ -1,17 +1,42 @@
-<h1><%= @user.name %>さんのランキング</h1>
+<h1><%= t('posts.user_ranking_title', user_name: @user.name) %></h1>
 
 <% if @posts.any? %>
   <ul>
     <% @posts.each do |post| %>
       <li>
-        <strong>商品名:</strong> <%= post.product_name %><br>
-        <strong>ランキング:</strong> <%= post.product_rank %><br>
-        <strong>推薦ポイント:</strong> <%= post.recommendation_points %><br>
-        <strong>購入リンク:</strong> <%= link_to '購入はこちら', post.purchase_link, target: '_blank' %>
+        <strong><%= t('posts.product_name') %>:</strong>
+        <% if post.user == current_user %>
+          <%= link_to post.product_name, edit_post_path(post), class: "text-primary" %>
+        <% else %>
+          <%= post.product_name %>
+        <% end %>
+        <br>
+        
+        <strong><%= t('posts.rank') %>:</strong> <%= post.product_rank %><br>
+        <strong><%= t('posts.recommendation_points') %>:</strong> <%= post.recommendation_points %><br>
+        <strong><%= t('posts.purchase_link') %>:</strong> <%= link_to t('posts.purchase_here'), post.purchase_link, target: '_blank' %><br>
+
+        <!-- 商品画像の表示 -->
+        <% if post.post_images.present? %>
+          <div class="mt-2">
+            <% post.post_images.each do |image| %>
+              <%= image_tag(image.image_url.url, 
+                            alt: "#{post.product_name}#{t('posts.image_alt')}", 
+                            class: "img-fluid", size: "150x150") %>
+            <% end %>
+          </div>
+        <% else %>
+          <p><%= t('posts.no_images') %></p>
+        <% end %>
       </li>
       <hr>
     <% end %>
   </ul>
+
+  <!-- ページネーションリンクの表示 -->
+  <div class="mt-3">
+    <%= paginate @posts %>
+  </div>
 <% else %>
-  <p>まだ投稿がありません。</p>
+  <p><%= t('posts.no_posts') %></p>
 <% end %>

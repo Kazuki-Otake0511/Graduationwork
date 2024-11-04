@@ -1,5 +1,5 @@
 <br>
-<h1>プロフィールを編集</h1>
+<h1><%= t('profiles.edit_title') %></h1>
 
 <!-- プロフィール画像の表示部分 -->
 <% if @profile.profile_image? %>
@@ -7,29 +7,29 @@
     <%= image_tag @profile.profile_image.url, class: "profile-image-preview" %>
   </div>
 <% else %>
-  <p>画像が設定されていません。</p>
+  <p><%= t('profiles.no_image') %></p>
 <% end %>
 
 <!-- フォーム全体を囲むブロック -->
 <div class="profile-form">
   <%= form_with model: @profile, local: true do |form| %>
     <div class="form-group">
-      <%= form.label :hobby, "趣味" %>
+      <%= form.label :hobby, t('profiles.form.hobby') %>
       <%= form.text_field :hobby, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :hometown, "出身地" %>
+      <%= form.label :hometown, t('profiles.form.hometown') %>
       <%= form.text_field :hometown, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :profile_image, "プロフィール画像" %>
+      <%= form.label :profile_image, t('profiles.form.profile_image') %>
       <%= form.file_field :profile_image, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.submit "更新する", class: "btn btn-primary" %>
+      <%= form.submit t('profiles.form.submit'), class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

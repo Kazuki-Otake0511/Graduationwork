@@ -1,34 +1,86 @@
 ja:
-  activerecord:
-    models:
-      user: ユーザー
-    attributes:
-      user:
-        name: 名前
-        email: メールアドレス
-        password: パスワード
-        password_confirmation: パスワード確認
-    errors:
-      messages:
-        blank: "を入力してください"         # フィールドが空のときのエラーメッセージ
-        taken: "はすでに存在します"       # ユニーク制約違反時のエラーメッセージ
-        confirmation: "と確認が一致しません" # パスワード確認時のエラーメッセージ
-        too_short: "は%{count}文字以上で入力してください"  # 入力が短すぎる場合のエラーメッセージ
-  errors:
-    format: "%{attribute}%{message}"  # エラーメッセージのフォーマット
-    messages:
-      record_invalid: "バリデーションに失敗しました"  # バリデーション失敗時
-      restrict_dependent_destroy:
-        one: "他のレコードが依存しているため削除できません"  # 削除制約違反時（1つの依存レコード）
-        many: "他のレコードが依存しているため削除できません" # 削除制約違反時（複数の依存レコード）
-  helpers:
-    submit:
-      create: "作成する"   # フォームの送信ボタン
-      update: "更新する"   # フォームの更新ボタン
-      submit: "送信"       # 汎用の送信ボタン
+  application:
+    title: "Myapp"
+    nav:
+      home: "ホーム"
+      logged_in: "さん"
+      login: "ログイン"
+      logout: "ログアウト"
+      account_edit: "アカウント編集"
+      profile_edit: "プロフィール編集"
+      toggle_navigation: "ナビゲーションを切り替える"
+  rankings:
+      title: "ユーザーごとのランキング"  # ページのタイトル
+      user_posts_title: "%{user_name}さんの投稿"  # ユーザーごとの投稿タイトル
+      product_name: "商品名"  # 商品名ラベル
+      product_rank: "ランキング"  # ランキングラベル
+      recommendation_points: "推薦ポイント"  # 推薦ポイントラベル
+      purchase_link_text: "購入はこちら"  # 購入リンクのテキスト
+      no_images: "この商品には画像が登録されていません。"  # 画像がない場合のメッセージ
+      image_alt_text: "%{product_name}の画像"  # 商品画像のalt属性用
+  auth:
+      login_title: "ログイン"
+      email: "メールアドレス"  # emailフィールドのラベル
+      password: "パスワード"  # passwordフィールドのラベル
+      login_button: "ログイン"  # ログインボタンのテキスト
+      no_account: "アカウントをお持ちでないですか？"
+      signup_link_text: "アカウント登録はこちら"
+  users:
+      edit_title: "ユーザー編集"  # ユーザー編集ページのタイトル
+      registration_title: "アカウント登録"
+      info:
+        name: "名前"
+        email: "Email"
+        hobby: "趣味"
+        hometown: "出身地"
+      pagination:
+        next: "次へ"
+        previous: "前へ"
+  posts:
+    user_ranking_title: "%{user_name}さんのランキング"
+    author: "投稿者: "
+    product_name: "商品名"
+    rank: "ランク"
+    recommendation_points: "おすすめポイント"
+    no_product_images: "この投稿には商品画像がありません。"
+    purchase: "購入する"
+    image_alt: "の画像"
+    edit_title: "編集"  # 編集ページのタイトル
+    new_title: "新規作成"  # 新規作成ページのタイトル
+    form:
+      product_rank: "商品ランク"
+      product_name: "商品名"
+      recommendation_points: "おすすめポイント"
+      purchase_link: "購入リンク"
+      current_images: "現在の画像"
+      no_images: "画像がありません"
+      delete_image: "この画像を削除"
+      new_image: "新しい画像を追加"
+      update: "更新する"
+      confirm_delete: "本当に削除しますか？"
+      delete: "削除"
+    show:
+      title: "%{product_name}"  # タイトル: 商品名
+      rank: "ランキング: %{rank}"  # ランキング: 数値
+      recommendation_points: "推薦のポイント:"  # 推薦のポイント: テキスト
+      purchase_link: "購入リンク"  # 購入リンク
+      product_image: "商品画像"  # 商品画像の見出し
+      no_image: "画像がありません"  # 画像がない場合のメッセージ
+      edit: "編集"  # 編集ボタン
+      back_to_list: "投稿一覧に戻る"  # 投稿一覧に戻るボタン
+      delete: "削除"  # 削除ボタン
+      delete_confirm: "本当に削除しますか？"  # 削除確認メッセージ
+  profiles:
+    edit_title: "プロフィールを編集"
+    no_image: "画像が設定されていません。"
+    form:
+      hobby: "趣味"
+      hometown: "出身地"
+      profile_image: "プロフィール画像"
+      submit: "更新する"
   flash:
-    notice: "通知"         # フラッシュメッセージ（成功）
-    alert: "エラー"        # フラッシュメッセージ（失敗）
+    notice: "通知"
+    danger: "エラー"
     profiles:
       update: "プロフィールが更新されました"
     sessions:
@@ -40,3 +92,30 @@ ja:
       create_failure: "アカウントの作成に失敗しました"
       update_success: "ユーザー情報が更新されました"
       update_failure: "ユーザー情報の更新に失敗しました"
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+    errors:
+      messages:
+        blank: "を入力してください"
+        taken: "はすでに存在します"
+        confirmation: "と確認が一致しません"
+        too_short: "は%{count}文字以上で入力してください"
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      record_invalid: "バリデーションに失敗しました"
+      restrict_dependent_destroy:
+        one: "他のレコードが依存しているため削除できません"
+        many: "他のレコードが依存しているため削除できません"
+  helpers:
+    submit:
+      create: "作成する"
+      update: "更新する"
+      submit: "送信"

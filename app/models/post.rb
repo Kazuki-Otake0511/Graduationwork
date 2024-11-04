@@ -27,7 +27,7 @@ class Post < ApplicationRecord
   private
 
   def unique_rank_for_user
-    if Post.exists?(user_id: user_id, product_rank: product_rank)
+    if Post.where(user_id: user_id, product_rank: product_rank).where.not(id: id).exists?
       errors.add(:product_rank, "このランキング順位はすでに使用されています")
     end
   end

@@ -1,0 +1,67 @@
+<% flash.each do |key, message| %>
+  <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %>">
+    <%= message %>
+  </div>
+<% end %>
+
+<%= form_with(model: @post, local: true, html: { multipart: true }) do |f| %>
+  <!-- 商品名 -->
+  <div class="form-group">
+    <%= f.label :product_name, t('posts.form.product_name') %>
+    <%= f.text_field :product_name, class: 'form-control' %>
+  </div>
+
+  <!-- ランキング -->
+  <div class="form-group">
+    <%= f.label :product_rank, t('posts.form.product_rank') %>
+    <%= f.number_field :product_rank, class: 'form-control', readonly: local_assigns[:is_edit] %>
+  </div>
+
+  <!-- 推薦ポイント -->
+  <div class="form-group">
+    <%= f.label :recommendation_points, t('posts.form.recommendation_points') %>
+    <%= f.text_area :recommendation_points, class: 'form-control' %>
+  </div>
+
+  <!-- 購入リンク -->
+  <div class="form-group">
+    <%= f.label :purchase_link, t('posts.form.purchase_link') %>
+    <%= f.text_field :purchase_link, class: 'form-control' %>
+  </div>
+
+  <% if is_edit %>
+    <!-- 編集時：現在の画像と削除オプションを表示 -->
+    <h3><%= t('posts.form.current_images') %></h3>
+    <% if @post.post_images.any? %>
+      <%= f.fields_for :post_images do |image_f| %>
+        <div class="mb-3">
+          <% if image_f.object.image_url.present? %>
+            <%= image_tag image_f.object.image_url.url, class: "img-thumbnail", size: "300x300" %>
+            <%= image_f.hidden_field :id %>
+            <div>
+              <%= image_f.check_box :_destroy %>
+              <%= image_f.label :_destroy, t('application.posts.form.delete_image') %>
+            </div>
+          <% else %>
+            <p><%= t('posts.form.no_images') %></p>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p><%= t('posts.form.no_images') %></p>
+    <% end %>
+  <% end %>
+
+  <!-- 新しい画像の追加（新規作成・編集共通） -->
+  <h3><%= t('posts.form.new_image') %></h3>
+  <div class="form-group">
+    <%= f.fields_for :post_images, @post.post_images.build do |image_f| %>
+      <%= image_f.file_field :image_url, class: 'form-control' %>
+    <% end %>
+  </div>
+
+  <!-- 送信ボタン -->
+  <div class="form-group">
+    <%= f.submit is_edit ? t('posts.form.update') : '投稿する', class: 'btn btn-primary' %>
+  </div>
+<% end %>
