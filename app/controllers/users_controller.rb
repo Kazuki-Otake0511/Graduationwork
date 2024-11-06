@@ -4,6 +4,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.page(params[:page]).per(10) # 1ページに10件のユーザーを表示
+     # 検索オブジェクトを作成
+     @q = User.ransack(params[:q])
+     # 検索結果をページネーション付きで取得
+     @users = @q.result.page(params[:page]).per(10)
   end
 
   def show

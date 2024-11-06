@@ -28,11 +28,18 @@ ja:
   users:
       edit_title: "ユーザー編集"  # ユーザー編集ページのタイトル
       registration_title: "アカウント登録"
+      index_title: "ユーザー一覧"
+      profile_image_alt: "%{user_name}さんのプロフィール画像"
+      default_profile_image_alt: "デフォルトのプロフィール画像"  # 修正：引用符の閉じ忘れを修正
       info:
         name: "名前"
         email: "Email"
         hobby: "趣味"
         hometown: "出身地"
+      search:
+        name_placeholder: "名前で検索"
+        email_placeholder: "メールで検索"
+        button: "検索"
       pagination:
         next: "次へ"
         previous: "前へ"

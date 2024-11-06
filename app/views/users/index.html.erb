@@ -1,23 +1,29 @@
 <h1><%= t('users.index_title') %></h1>
 
+<!-- 検索フォーム -->
+<%= search_form_for @q, url: users_path, method: :get, class: "mb-4" do |f| %>
+  <div class="input-group mb-3">
+    <%= f.label :name_cont, "名前", class: "input-group-text" %>
+    <%= f.text_field :name_cont, placeholder: "名前で検索", class: "form-control" %>
+
+    <%= f.label :email_cont, "メールアドレス", class: "input-group-text ms-2" %>
+    <%= f.text_field :email_cont, placeholder: "メールで検索", class: "form-control" %>
+
+    <%= f.submit "検索", class: "btn btn-primary ms-2" %>
+  </div>
+<% end %>
+
+<!-- ユーザーリスト -->
 <ul class="list-group">
   <% @users.each do |user| %>
     <li class="list-group-item d-flex align-items-center">
-      <!-- プロフィール画像の表示 -->
       <% if user.profile&.profile_image.present? %>
-        <%= image_tag(user.profile.profile_image.url, 
-                      alt: t('users.profile_image_alt', user_name: user.name), 
-                      class: "img-thumbnail me-3", 
-                      size: "100x100") %>
+        <%= image_tag(user.profile.profile_image.url, alt: t('users.profile_image_alt', user_name: user.name), class: "img-thumbnail me-3", size: "100x100") %>
       <% else %>
-        <%= image_tag('default_profile.png', 
-                      alt: t('users.default_profile_image_alt'), 
-                      class: "img-thumbnail me-3", 
-                      size: "100x100") %>
+        <%= image_tag('default_profile.png', alt: t('users.default_profile_image_alt'), class: "img-thumbnail me-3", size: "100x100") %>
       <% end %>
 
       <div>
-        <!-- ユーザー情報の表示 -->
         <strong><%= t('users.info.name') %>:</strong> <%= link_to user.name, user_path(user) %><br>
         <strong><%= t('users.info.email') %>:</strong> <%= user.email %><br>
         <strong><%= t('users.info.hobby') %>:</strong> <%= user.profile&.hobby %><br>

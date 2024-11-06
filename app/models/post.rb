@@ -8,6 +8,10 @@ class Post < ApplicationRecord
   validate :validate_post_images_count
   validate :unique_rank_for_user  # 同じユーザーで同じランキングの投稿を禁止する
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["product_name", "product_rank", "recommendation_points", "created_at", "updated_at"]
+  end
+
   # 投稿と画像をトランザクションで保存する
   def save_with_images(image_files:)
     ActiveRecord::Base.transaction do

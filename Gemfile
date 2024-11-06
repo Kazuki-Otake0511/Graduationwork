@@ -16,6 +16,7 @@ gem "sorcery"
 gem 'carrierwave', '~> 3.0'
 gem 'mini_magick'
 gem 'kaminari'
+gem 'ransack'
 
 # Add Bootstrap
 gem "bootstrap", "~> 5.1.0"  # ←ここに追加
