@@ -5,6 +5,10 @@ class User < ApplicationRecord
 
   after_create :create_default_profile
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "email", "created_at", "updated_at"]
+  end
+
   authenticates_with_sorcery!  # Sorceryの認証機能を有効にする 
 
    # メールアドレスが必須かつユニークであることを確認

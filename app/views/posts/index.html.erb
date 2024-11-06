@@ -1,20 +1,28 @@
+
+
+<!-- 検索フォーム -->
+<%= search_form_for @q, url: posts_path, method: :get, class: "mb-4" do |f| %>
+  <div class="input-group mb-3">
+    <%= f.label :product_name_cont, t('posts.product_name'), class: "input-group-text" %>
+    <%= f.text_field :product_name_cont, placeholder: t('posts.product_name'), class: "form-control" %>
+
+    <%= f.label :product_rank_eq, t('posts.rank'), class: "input-group-text ms-2" %>
+    <%= f.number_field :product_rank_eq, placeholder: t('posts.rank'), class: "form-control" %>
+
+    <%= f.submit t('users.search.button'), class: "btn btn-primary ms-2" %>
+  </div>
+<% end %>
+
+<!-- 投稿リストの表示 -->
 <% @posts.each do |post| %>
   <div class="post">
-
-    <!-- 投稿者名とプロフィール画像 -->
     <div class="post-author">
       <% if post.user.profile.present? && post.user.profile.profile_image.present? %>
-        <%= link_to image_tag(post.user.profile.profile_image.thumb.url, alt: post.user.name, class: "profile-image"), 
-                    user_path(post.user) %>
+        <%= link_to image_tag(post.user.profile.profile_image.thumb.url, alt: post.user.name, class: "profile-image"), user_path(post.user) %>
       <% else %>
-        <%= link_to image_tag('default_profile.png', alt: post.user.name, class: "profile-image"), 
-                    user_path(post.user) %>
+        <%= link_to image_tag('default_profile.png', alt: post.user.name, class: "profile-image"), user_path(post.user) %>
       <% end %>
-      
-      <!-- 投稿者名をユーザーページへのリンクに変更 -->
-      <p>
-        <%= t('posts.author') %><%= link_to "#{post.user.name}", user_path(post.user), class: "user-link" %>
-      </p>
+      <p><%= t('posts.author') %><%= link_to "#{post.user.name}", user_path(post.user), class: "user-link" %></p>
     </div>
 
     <p><%= t('posts.product_name') %>: <%= post.product_name %></p>
@@ -31,10 +39,13 @@
         <p><%= t('posts.no_product_images') %></p>
       <% end %>
     </div>
+
     <p class="purchase-link">
       <%= link_to t('posts.purchase'), post.purchase_link, target: "_blank", rel: "noopener" %>
     </p>
   </div>
 <% end %>
 
+<!-- ページネーション -->
 <%= paginate @posts, class: 'pagination' %>
+

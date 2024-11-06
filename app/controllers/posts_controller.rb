@@ -7,6 +7,10 @@ class PostsController < ApplicationController
   def index
     # 投稿を作成日の降順（新しい順）で取得し、ページネーションを適用
     @posts = Post.order(created_at: :desc).page(params[:page]).per(5)
+    # `ransack`の検索オブジェクトを生成
+    @q = Post.ransack(params[:q])
+    # 検索結果を取得し、ページネーションを適用
+    @posts = @q.result.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   # 新規投稿フォームの表示アクション
