@@ -19,7 +19,7 @@ gem 'kaminari'
 gem 'ransack'
 
 # Add Bootstrap
-gem "bootstrap", "~> 5.1.0"  # ←ここに追加
+gem "bootstrap", "~> 5.3.3"  # ←ここに追加
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
