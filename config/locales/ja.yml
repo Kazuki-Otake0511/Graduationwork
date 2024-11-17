@@ -1,6 +1,8 @@
 ja:
   application:
     title: "Myapp"
+    homepage_title: "ホームページ | Myapp"
+    login_title: "ログイン画面 | Myapp"
     nav:
       home: "ホーム"
       logged_in: "さん"
@@ -26,11 +28,16 @@ ja:
       no_account: "アカウントをお持ちでないですか？"
       signup_link_text: "アカウント登録はこちら"
   users:
-      edit_title: "ユーザー編集"  # ユーザー編集ページのタイトル
+      edit_account_title: "アカウント編集 | Myapp"
+      edit_title: "アカウント編集"  # ユーザー編集ページのタイトル
       registration_title: "アカウント登録"
-      index_title: "ユーザー一覧"
+      index_title: "ユーザー一覧 "
+      index_title_page: "ユーザー一覧 | Myapp"
       profile_image_alt: "%{user_name}さんのプロフィール画像"
       default_profile_image_alt: "デフォルトのプロフィール画像"  # 修正：引用符の閉じ忘れを修正
+      delete_success: "削除に成功しました"
+      show_title_page: "ユーザーランキング | Myapp"
+      new_title_page: "アカウント登録 | Myapp"
       info:
         name: "名前"
         email: "Email"
@@ -54,6 +61,10 @@ ja:
     image_alt: "の画像"
     edit_title: "編集"  # 編集ページのタイトル
     new_title: "新規作成"  # 新規作成ページのタイトル
+    index_title: "最新の投稿 | Myapp"
+    edit_title_page: "投稿編集 | Myapp"
+    new_title_page: "ランキンングを投稿する | Myapp"
+    show_title: "投稿の完了 | Myapp"
     form:
       product_rank: "商品ランク"
       product_name: "商品名"
@@ -79,6 +90,7 @@ ja:
       delete_confirm: "本当に削除しますか？"  # 削除確認メッセージ
   profiles:
     edit_title: "プロフィールを編集"
+    edit_title_page: "プロフィール編集 | Myapp"
     no_image: "画像が設定されていません。"
     form:
       hobby: "趣味"

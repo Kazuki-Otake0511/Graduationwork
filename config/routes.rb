@@ -30,4 +30,9 @@ Rails.application.routes.draw do
   get 'rankings', to: 'rankings#index'
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # config/routes.rb
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+  end
 end

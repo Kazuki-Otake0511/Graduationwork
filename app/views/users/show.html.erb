@@ -1,3 +1,4 @@
+<% content_for :title, t('users.show_title_page') %>
 <h1><%= t('posts.user_ranking_title', user_name: @user.name) %></h1>
 
 <% if @posts.any? %>
@@ -14,7 +15,9 @@
         
         <strong><%= t('posts.rank') %>:</strong> <%= post.product_rank %><br>
         <strong><%= t('posts.recommendation_points') %>:</strong> <%= post.recommendation_points %><br>
-        <strong><%= t('posts.purchase_link') %>:</strong> <%= link_to t('posts.purchase_here'), post.purchase_link, target: '_blank' %><br>
+        <p class="purchase-link">
+          <%= link_to t('posts.purchase'), post.purchase_link, target: "_blank", rel: "noopener" %>
+        </p>
 
         <!-- 商品画像の表示 -->
         <% if post.post_images.present? %>

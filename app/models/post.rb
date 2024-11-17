@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :post_images, inverse_of: :post, dependent: :destroy
   accepts_nested_attributes_for :post_images, allow_destroy: true
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
 
   # product_rankが1位から10位の間であることをバリデート
   validates :product_rank, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }

@@ -59,7 +59,7 @@ def destroy
   
   if @post.destroy
     flash[:success] = "投稿が削除されました。" # 成功メッセージ
-    redirect_to user_path(user), notice: t('application.posts.form.delete_success')
+    redirect_to user_path(user), notice: t('users.delete_success')
   else
     flash[:error] = "投稿の削除に失敗しました。" # 失敗メッセージ
     redirect_to user_path(user) # 失敗時も同じユーザーページにリダイレクト

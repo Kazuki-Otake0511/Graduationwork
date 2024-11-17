@@ -1,5 +1,4 @@
-
-
+<% content_for :title, t('posts.index_title') %>
 <!-- 検索フォーム -->
 <%= search_form_for @q, url: posts_path, method: :get, class: "mb-4" do |f| %>
   <div class="input-group mb-3">
@@ -43,9 +42,18 @@
     <p class="purchase-link">
       <%= link_to t('posts.purchase'), post.purchase_link, target: "_blank", rel: "noopener" %>
     </p>
+
+    <!-- いいねボタン -->
+    <div class="like-section">
+      <% if post.liked_users.include?(current_user) %>
+        <%= link_to 'いいねを取り消す', post_like_path(post, post.likes.find_by(user: current_user)), method: :delete, class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to 'いいね', post_likes_path(post), method: :post, class: "btn btn-primary" %>
+      <% end %>
+      <span><%= post.likes.count %> いいね</span>
+    </div>
   </div>
 <% end %>
 
 <!-- ページネーション -->
 <%= paginate @posts, class: 'pagination' %>
-

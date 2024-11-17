@@ -31,8 +31,10 @@
     <!-- 全ページ共通のJavaScriptファイルを読み込む -->
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 
-    <!-- トップページ（home#index）にのみ適用するCSSファイルを読み込む -->
-  
+    <!-- posts#index ページにのみ適用するCSSファイルを読み込む -->
+    <% if controller.controller_name == 'posts' && controller.action_name == 'index' %>
+      <%= stylesheet_link_tag 'post', media: 'all', 'data-turbo-track': 'reload' %>
+    <% end %>
   </head>
 
   <body>
