@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_110631) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_18_101951) do
   create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_110631) do
     t.string "product_name"
     t.integer "product_rank"
     t.text "recommendation_points"
-    t.string "purchase_link"
+    t.text "purchase_link"
     t.string "product_video"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
