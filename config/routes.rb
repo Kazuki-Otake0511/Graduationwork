@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   # config/routes.rb
+  resources :likes, only: [:index]
   resources :posts do
     resources :likes, only: [:create, :destroy]
   end

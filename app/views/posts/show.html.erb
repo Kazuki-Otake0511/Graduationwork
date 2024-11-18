@@ -1,4 +1,6 @@
 <% content_for :title, t('posts.show_title') %>
+
+<!-- フラッシュメッセージの表示 -->
 <% if flash.any? %>
   <div class="container mt-3">
     <% flash.each do |key, message| %>
@@ -10,11 +12,16 @@
   </div>
 <% end %>
 
+<!-- 投稿の詳細情報 -->
 <h1><%= t('posts.show.title', product_name: @post.product_name) %></h1>
 <p><%= t('posts.show.rank', rank: @post.product_rank) %></p>
 <p><%= t('posts.show.recommendation_points', points: @post.recommendation_points) %></p>
-<p><%= t('posts.show.purchase_link') %>: <%= link_to @post.purchase_link, @post.purchase_link, target: "_blank", rel: "noopener", class: "link-primary" %></p>
+<p>
+  <%= t('posts.show.purchase_link') %>: 
+  <%= link_to @post.purchase_link, @post.purchase_link, target: "_blank", rel: "noopener", class: "link-primary" %>
+</p>
 
+<!-- 投稿の画像 -->
 <h3><%= t('posts.show.product_image') %></h3>
 <% if @post.post_images.any? %>
   <% @post.post_images.each do |image| %>
@@ -28,8 +35,21 @@
   <p><%= t('posts.show.no_image') %></p>
 <% end %>
 
+<!-- 投稿者本人のみ編集・削除ボタンを表示 -->
+<% if current_user == @post.user %>
+  <div class="mt-4">
+    <%= link_to t('posts.show.edit'), edit_post_path(@post), class: 'btn btn-primary me-2' %>
+    <%= link_to t('posts.show.delete'), post_path(@post), method: :delete, data: { confirm: t('posts.show.delete_confirm') }, class: 'btn btn-danger' %>
+  </div>
+<% end %>
+
+<!-- 戻るボタン -->
 <div class="mt-4">
-  <%= link_to t('posts.show.edit'), edit_post_path(@post), class: 'btn btn-primary me-2' %>
-  <%= link_to t('posts.show.back_to_list'), posts_path, class: 'btn btn-secondary me-2' %>
-  <%= link_to t('posts.show.delete'), post_path(@post), method: :delete, data: { confirm: t('posts.show.delete_confirm') }, class: 'btn btn-danger' %>
+  <% if request.referer&.include?(likes_path) %>
+    <!-- いいねした投稿ページに戻る -->
+    <%= link_to t('posts.show.back_to_likes'), likes_path, class: 'btn btn-secondary' %>
+  <% else %>
+    <!-- 通常の投稿一覧ページに戻る -->
+    <%= link_to t('posts.show.back_to_list'), posts_path, class: 'btn btn-secondary' %>
+  <% end %>
 </div>

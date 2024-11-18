@@ -69,7 +69,10 @@
               <li class="nav-item">
                 <%= link_to t('application.nav.account_edit'), edit_user_path(current_user), class: "nav-link" %>
               </li>
-
+              <!-- いいねした投稿へのリンク -->
+              <li class="nav-item">
+                <%= link_to t('application.nav.likes'), likes_path(current_user), class: "nav-link" %>
+              </li>
               <!-- プロフィール編集ページへのリンク -->
               <li class="nav-item">
                 <%= link_to t('application.nav.profile_edit'), edit_profile_path, class: "nav-link" %>

@@ -3,6 +3,12 @@ ja:
     title: "Myapp"
     homepage_title: "ホームページ | Myapp"
     login_title: "ログイン画面 | Myapp"
+    my_ranking: "MyRanking"
+    homepage_link: "MyRanking"
+    latest_posts: "最新の投稿"
+    post_my_product: "私の商品を投稿"
+    users_list: "ユーザー一覧"
+    contact: "お問い合わせ"
     nav:
       home: "ホーム"
       logged_in: "さん"
@@ -11,6 +17,7 @@ ja:
       account_edit: "アカウント編集"
       profile_edit: "プロフィール編集"
       toggle_navigation: "ナビゲーションを切り替える"
+      likes: "いいねした投稿"
   rankings:
       title: "ユーザーごとのランキング"  # ページのタイトル
       user_posts_title: "%{user_name}さんの投稿"  # ユーザーごとの投稿タイトル
@@ -50,6 +57,12 @@ ja:
       pagination:
         next: "次へ"
         previous: "前へ"
+  likes:
+    title: "いいねした投稿"
+    no_likes: "いいねした投稿がありません。"
+    posted_by: "投稿者: "
+    view_details: "詳細を見る"
+    truncate_text: "..."      
   posts:
     user_ranking_title: "%{user_name}さんのランキング"
     author: "投稿者: "
@@ -63,7 +76,7 @@ ja:
     new_title: "新規作成"  # 新規作成ページのタイトル
     index_title: "最新の投稿 | Myapp"
     edit_title_page: "投稿編集 | Myapp"
-    new_title_page: "ランキンングを投稿する | Myapp"
+    new_title_page: "ランキングを投稿する | Myapp"
     show_title: "投稿の完了 | Myapp"
     form:
       product_rank: "商品ランク"
@@ -88,6 +101,8 @@ ja:
       back_to_list: "投稿一覧に戻る"  # 投稿一覧に戻るボタン
       delete: "削除"  # 削除ボタン
       delete_confirm: "本当に削除しますか？"  # 削除確認メッセージ
+      back_to_list: "投稿一覧に戻る"
+      back_to_likes: "いいねした投稿に戻る"
   profiles:
     edit_title: "プロフィールを編集"
     edit_title_page: "プロフィール編集 | Myapp"
@@ -121,18 +136,29 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード確認"
     errors:
+      models:
+        post:
+          attributes:
+            product_rank:
+              not_a_number: "ランクには数値を入力してください"
+          not_a_number: "数値を入力してください"
       messages:
         blank: "を入力してください"
         taken: "はすでに存在します"
         confirmation: "と確認が一致しません"
         too_short: "は%{count}文字以上で入力してください"
+        not_a_number: "数値を入力してください"
   errors:
     format: "%{attribute}%{message}"
     messages:
+      not_a_number: "数値を入力してください"
       record_invalid: "バリデーションに失敗しました"
       restrict_dependent_destroy:
         one: "他のレコードが依存しているため削除できません"
         many: "他のレコードが依存しているため削除できません"
+    attributes:
+      product_rank:
+        not_a_number: "ランクには数値を入力してください"    
   helpers:
     submit:
       create: "作成する"

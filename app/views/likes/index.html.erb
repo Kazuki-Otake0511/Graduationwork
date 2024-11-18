@@ -1,0 +1,37 @@
+<h1 class="my-4 text-center"><%= t('likes.title') %></h1>
+
+<% if @liked_posts.any? %>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% @liked_posts.each do |post| %>
+      <div class="col">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <!-- 投稿のタイトルを表示 -->
+            <h5 class="card-title">
+              <%= link_to post.product_name, post_path(post), class: "text-decoration-none" %>
+            </h5>
+            
+            <!-- 投稿者の名前を表示 -->
+            <p class="card-text text-muted"><%= t('likes.posted_by') %><%= post.user.name %></p>
+            
+            <!-- 投稿の内容を短縮して表示 -->
+            <% if post.respond_to?(:recommendation_points) && post.recommendation_points.present? %>
+              <p class="card-text">
+                <%= truncate(post.recommendation_points, length: 80, omission: t('likes.truncate_text')) %>
+              </p>
+            <% end %>
+            
+            <!-- 詳細ページへのリンク -->
+            <%= link_to t('likes.view_details'), post_path(post), class: 'btn btn-primary mt-2' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-warning text-center" role="alert">
+    <%= t('likes.no_likes') %>
+  </div>
+<% end %>
+
+

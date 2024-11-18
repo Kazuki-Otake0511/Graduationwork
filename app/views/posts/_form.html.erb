@@ -11,11 +11,15 @@
     <%= f.text_field :product_name, class: 'form-control' %>
   </div>
 
-  <!-- ランキング -->
-  <div class="form-group">
-    <%= f.label :product_rank, t('posts.form.product_rank') %>
-    <%= f.number_field :product_rank, class: 'form-control', readonly: local_assigns[:is_edit] %>
-  </div>
+ <!-- ランキング -->
+<div class="form-group">
+  <%= f.label :product_rank, t('posts.form.product_rank') %>
+  <%= f.number_field :product_rank, 
+      class: 'form-control', 
+      readonly: is_edit, 
+      disabled: is_edit,
+      style: is_edit ? 'background-color: #e9ecef;' : '' %>
+</div>
 
   <!-- 推薦ポイント -->
   <div class="form-group">

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   # 共通処理として、特定の投稿を取得するメソッドを指定のアクションで実行する
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy] # 自分の投稿か確認
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # 一覧表示アクション
   def index
@@ -109,6 +110,13 @@ end
       :product_name, :product_rank, :recommendation_points, :purchase_link,
       post_images_attributes: [:id, :image_url, :_destroy]
     )
+  end
+
+  def correct_user
+    unless @post.user == current_user
+      flash[:danger] = "他のユーザーの投稿を編集・削除することはできません"
+      redirect_to posts_path
+    end
   end
 
   # 画像を保存するためのメソッド

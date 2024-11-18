@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <% content_for :title, t('application.homepage_title') %>
+    <!-- ページタイトルをI18nから設定 -->
+    <title><%= content_for?(:title) ? yield(:title) : t('application.homepage_title') %></title>
 </head>
-
 <body>
+    <!-- ナビゲーションメニュー -->
     <nav id="menubar">
         <h1>
-            <a href="index.html">
-                MyRanking
-            </a>
+            <% if logged_in? %>
+                <!-- ログインしている場合、ユーザーのランキングページにリンク -->
+                <a href="<%= user_path(current_user) %>">
+                    <%= t('application.my_ranking') %>
+                </a>
+            <% else %>
+                <!-- ログインしていない場合、ホームページにリンク -->
+                <a href="<%= root_path %>">
+                    <%= t('application.homepage_link') %>
+                </a>
+            <% end %>
         </h1>
         <ul>
-            <li><a href="<%= posts_path %>">最新の投稿</a></li>
+            <!-- 最新の投稿ページへのリンク -->
+            <li><a href="<%= posts_path %>"><%= t('application.latest_posts') %></a></li>
 
             <% if logged_in? %>
-              <li><a href="<%= new_post_path %>">私の商品を投稿</a></li>
+                <!-- ログインしている場合、投稿作成ページへのリンク -->
+                <li><a href="<%= new_post_path %>"><%= t('application.post_my_product') %></a></li>
             <% end %>
 
-            <li><a href="<%= users_path %>">ユーザー一覧</a></li>
-            <li><a href="#contact">お問い合わせ</a></li>
+            <!-- ユーザー一覧ページへのリンク -->
+            <li><a href="<%= users_path %>"><%= t('application.users_list') %></a></li>
+            
+            <!-- お問い合わせセクションへのリンク -->
+            <li><a href="#contact"><%= t('application.contact') %></a></li>
         </ul>
     </nav>
 </body>
