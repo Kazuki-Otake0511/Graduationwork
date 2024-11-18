@@ -115,6 +115,10 @@ ja:
   flash:
     notice: "通知"
     danger: "エラー"
+    messages:
+      login_required: "ログインしてください"
+      access_denied: "アクセスが拒否されました"
+      action_failed: "処理に失敗しました"
     profiles:
       update: "プロフィールが更新されました"
     sessions:

@@ -28,7 +28,7 @@ class LikesController < ApplicationController
 
     def logged_in_user
       unless logged_in?
-        flash[:danger] = "ログインしてください"
+        flash[:danger] = t('flash.messages.login_required')
         redirect_to login_path
       end
     end
